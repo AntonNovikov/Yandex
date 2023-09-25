@@ -9,10 +9,11 @@ A. Целая куча задач
 Работа алгоритма начинается в нулевой момент времени.
 
 Пример 1
-Ввод	Вывод
+Ввод	
 ```javascript
 [{"index":"0000","executionTime":100,"expiredAt":200},{"index":"0001","executionTime":1000,"expiredAt":1250},{"index":"0002","executionTime":200,"expiredAt":1300},{"index":"0003","executionTime":2000,"expiredAt":3200}]
-3
+```
+Вывод 3
 Пример 2
 Ввод	Вывод
 [{"index":"0000","executionTime":1,"expiredAt":2}]
