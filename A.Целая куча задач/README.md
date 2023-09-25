@@ -84,7 +84,7 @@ orders.length-bad order = right answer
 5 orders.length = 1
 6 orders.length-2 = 0
 7 orders.length = 2
-8 orders.length-1 = 2 // (Мой код выдает на 1 меньше
+[x]8 orders.length-1 = 2 // (Мой код выдает на 1 меньше
 9 orders.length-1 = 1
 10 4
 11 orders.length-2 = 3
