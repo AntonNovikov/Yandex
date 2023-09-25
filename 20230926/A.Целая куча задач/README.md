@@ -116,5 +116,5 @@ const orders3 = [
   {"index":"0001","executionTime":4,"expiredAt":3}
 ];
 
-console.log(processOrders(orders3)); // Output: 
+console.log(processOrders(orders3)); // Output: 0
 ```
