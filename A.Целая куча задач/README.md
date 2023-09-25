@@ -9,28 +9,49 @@
 Работа алгоритма начинается в нулевой момент времени.
 
 ### Пример 1
-Ввод	
+
+Ввод
+
 ```javascript
-[{"index":"0000","executionTime":100,"expiredAt":200},
-{"index":"0001","executionTime":1000,"expiredAt":1250},
-{"index":"0002","executionTime":200,"expiredAt":1300},
-{"index":"0003","executionTime":2000,"expiredAt":3200}]
+[
+  { index: "0000", executionTime: 100, expiredAt: 200 },
+  { index: "0001", executionTime: 1000, expiredAt: 1250 },
+  { index: "0002", executionTime: 200, expiredAt: 1300 },
+  { index: "0003", executionTime: 2000, expiredAt: 3200 },
+];
 ```
+
 Вывод 3
 
 ### Пример 2
-Ввод	Вывод
-[{"index":"0000","executionTime":1,"expiredAt":2}]
-1
-Пример 3
-Ввод	Вывод
+
+Ввод
+
+```javascript
+[{ index: "0000", executionTime: 1, expiredAt: 2 }];
+```
+
+Вывод 1
+
+### Пример 3
+
+Ввод
+
+```javascript
 [{"index":"0000","executionTime":3,"expiredAt":2},{"index":"0001","executionTime":4,"expiredAt":3}]
-0
-Примечания
-Решение требуется оформить по шаблону: ``` module.exports = function(orders) {
-// основная функция
-// ...
-}
+Вывод 0
+```
+
+### Примечания
+
+Решение требуется оформить по шаблону:
+
+```javascript
+module.exports = function (orders) {
+  // основная функция
+  // ...
+};
 
 // вспомогательные функции
-// ... ```
+// ...
+```
