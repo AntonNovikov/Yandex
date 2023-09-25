@@ -76,6 +76,7 @@ module.exports = function(orders) {
 ### Ответ тестов
 
 ``` js
+orders.length-bad order = right answer
 1 orders.length-1 = 3
 2 orders.length = 1
 3 orders.length-2 = 0
