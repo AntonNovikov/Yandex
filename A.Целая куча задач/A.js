@@ -14,7 +14,6 @@ module.exports = function(orders) {
       currentTime += order.executionTime;
     }
   }
-"
   return maxOrders;
 }
 
