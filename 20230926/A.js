@@ -1,6 +1,20 @@
-const orders1 = [
-  {"index":"0000","executionTime":100,"expiredAt":200},
-  {"index":"0001","executionTime":1000,"expiredAt":1250},
-  {"index":"0002","executionTime":200,"expiredAt":1300},
-  {"index":"0003","executionTime":2000,"expiredAt":3200}
-];
+module.exports = function(orders) {
+
+  orders.sort((a, b) => a.expiredAt - b.expiredAt);
+
+  let currentTime = 0;
+  let maxOrders = 0;
+
+  for (let i = 0; i < orders.length; i++) {
+    const order = orders[i];
+
+
+    if (currentTime + order.executionTime <= order.expiredAt) {
+      maxOrders++;
+      currentTime += order.executionTime;
+    }
+  }
+"
+  return maxOrders;
+}
+
