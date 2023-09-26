@@ -29,7 +29,7 @@ function solution({users, rooms}) {
       [13, 17],
       [14, 15]
     ],
-    rooms: [1, 0, 1]
+    rooms: [1]
   };
   
   console.log(solution(data)); // Output: [[14, 15]]
