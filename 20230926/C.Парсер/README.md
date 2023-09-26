@@ -4,9 +4,9 @@
 Функцию для похода за данными
 Урл по которому лежат данные
 Целое число - размер чанка
-Функция должная ходить за разметкой по указаному урлу с помощью переданного фетчера, возвращать асинхронно итерируемый объект, который перебирает элементы полученной разметки и возвращает чанками размера chunkSize значения полей value элементов типа 'data'. Если встречается в разметке элемент типа provider, то этот элемент заменятся на результат работы функции fetcher(src), где src значение одноименного поля элемента
+Функция должная ходить за разметкой по указаному урлу с помощью переданного фетчера, возвращать асинхронно итерируемый объект, который перебирает элементы полученной разметки и возвращает чанками размера `chunkSize` значения полей `value` элементов типа 'data'. Если встречается в разметке элемент типа provider, то этот элемент заменятся на результат работы функции `fetcher(src)`, где `src` значение одноименного поля элемента
 
-```js
+```ts
 interface ItemProvider {
   type: 'provider';
   src: string;
@@ -21,7 +21,7 @@ interface ItemData {
 type Fetcher = (src: string) => Promise<Array<ItemData | ItemProvider>>;
 ```
 Шаблон решения
-```js
+```ts
 modules.exports.parse = function(fetcher: Fetcher, src: string, chunkSize: number): AsyncIterable<any[]> {
   // код
 };
@@ -119,4 +119,76 @@ async function parse(fetcher, src, chunkSize) {
 
 module.exports = parse;
 
+```
+
+```js
+
+modules.exports.parse = async function(fetcher, src, chunkSize) {
+  const markup = await fetcher(src);
+
+  async function* parseMarkup(markup) {
+    for (const item of markup) {
+      if (item.type === 'data') {
+        yield item.value;
+      } else if (item.type === 'provider') {
+        const providerMarkup = await fetcher(item.src);
+        yield* parseMarkup(providerMarkup);
+      }
+    }
+  }
+
+  const chunks = [];
+  let chunk = [];
+
+  for await (const value of parseMarkup(markup)) {
+    chunk.push(value);
+
+    if (chunk.length === chunkSize) {
+      chunks.push(chunk);
+      chunk = [];
+    }
+  }
+
+  if (chunk.length > 0) {
+    chunks.push(chunk);
+  }
+
+  return chunks;
+};
+```
+
+
+``` ts
+modules.exports.parse = async function(fetcher: Fetcher, src: string, chunkSize: number): Promise<any[][]> {
+  const markup: Array<ItemData | ItemProvider> = await fetcher(src);
+
+  async function* parseMarkup(markup: Array<ItemData | ItemProvider>): AsyncGenerator<any, void, unknown> {
+    for (const item of markup) {
+      if (item.type === 'data') {
+        yield item.value;
+      } else if (item.type === 'provider') {
+        const providerMarkup: Array<ItemData | ItemProvider> = await fetcher(item.src);
+        yield* parseMarkup(providerMarkup);
+      }
+    }
+  }
+
+  const chunks: any[][] = [];
+  let chunk: any[] = [];
+
+  for await (const value of parseMarkup(markup)) {
+    chunk.push(value);
+
+    if (chunk.length === chunkSize) {
+      chunks.push(chunk);
+      chunk = [];
+    }
+  }
+
+  if (chunk.length > 0) {
+    chunks.push(chunk);
+  }
+
+  return chunks;
+};
 ```

@@ -23,3 +23,14 @@ const input2 = {
 
 const output2 = solution(input2);
 console.log(output2);
+const input3 = {
+  users: [
+    [10, 12],
+    [13, 15],
+    [16, 17],
+  ],
+  rooms: [1,2],
+};
+
+const output3 = solution(input3);
+console.log(output3);
