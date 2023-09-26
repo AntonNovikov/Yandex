@@ -1,4 +1,6 @@
 module.exports = function solution({ users, rooms }) {
+  console.log(users);
+  console.log(rooms);
   if (users.length === 0 || rooms === 0) {
     return [];
   }
@@ -21,13 +23,21 @@ module.exports = function solution({ users, rooms }) {
     my_map.set(num, 0);
   }
   function write_to_map(arr) {
+    console.log("write");
     let startkey = arr[0];
     for (let i = 0; i < arr[1] - arr[0]; i++) {
       key = startkey + i;
+      console.log("key: ", key);
       if (my_map.get(key) === 0) {
+        console.log(my_map.get(key), " - 1 if");
         my_map.set(key, 1);
-      } else if (my_map.get(key) === 1) {
-        my_map.set(key, 2);
+      } else if (my_map.get(key) >= 1 && my_map.get(key) < rooms[0]) {
+        console.log(my_map.get(key), " - 2 if");
+        value = my_map.get(key) + 1;
+        my_map.set(key, value);
+      } else if (my_map.get(key) === rooms[0]) {
+        console.log(my_map.get(key), " - 3 if");
+        my_map.set(key, 0);
       }
     }
     return my_map;
@@ -38,6 +48,7 @@ module.exports = function solution({ users, rooms }) {
   }
 
   let intervals = my_map;
+  console.log(my_map);
   let result = [];
   let start = null;
   let end = null;

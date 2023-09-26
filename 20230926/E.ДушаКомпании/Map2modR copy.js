@@ -1,5 +1,6 @@
 module.exports = function solution({ users, rooms }) {
-  // console.log(users);
+  console.log(users);
+  console.log(rooms);
   if (users.length === 0 || rooms === 0) {
     // console.log("if");
     return [];
